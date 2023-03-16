@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Question = require('../models/questionModel');
+const mongoose = require("mongoose");
+const Question = require("../models/questionModel");
 
 const examSchema = new mongoose.Schema({
   title: String,
@@ -7,21 +7,17 @@ const examSchema = new mongoose.Schema({
     {
       questionId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Question'
-        
+        ref: "Question",
       },
-      text : String,
-         choices: [
-           {
-             text: String,
-             isCorrect: Boolean,
-           },
-         ],
-      
-        
-        
-    }
-  ]
+      text: String,
+      choices: [
+        {
+          text: String,
+          isCorrect: Boolean,
+        },
+      ],
+    },
+  ],
 });
 
-module.exports = mongoose.model('Exam', examSchema, 'Exam_Data');
+module.exports = mongoose.model("Exam", examSchema, "Exam_Data");

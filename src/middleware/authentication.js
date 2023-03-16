@@ -5,11 +5,10 @@ let authenticate = (req, res, next) => {
   if (req.headers.authorization) {
     try {
       let decode = jwt.verify(req.headers.authorization, process.env.SEC);
-    //  console.log(decode)
+      //  console.log(decode)
       if (decode) {
         req.user = {
           userId: decode._id,
-          
         };
         // console.log(req.user)
         next();
@@ -22,4 +21,4 @@ let authenticate = (req, res, next) => {
   }
 };
 
-module.exports = { authenticate }
+module.exports = { authenticate };

@@ -8,20 +8,12 @@ const User = require('./src/routes/userRoute');
 const Question = require('./src/routes/questionRoute');
 const Exam = require('./src/routes/examRoute');
 const AttendedExam = require('./src/routes/attendedExamRoute');
-
-
 // Create express app
 const app = express();
-
 // Set up bodyParser middleware to parse JSON request bodies
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({origin:'*'}))
-
-
-
-
-
 //Route Controller;
 app.use('/',User);
 app.use('/user',User);
