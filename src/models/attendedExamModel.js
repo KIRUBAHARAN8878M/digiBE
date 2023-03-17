@@ -12,7 +12,7 @@ const attendedExamSchema = new mongoose.Schema({
     {
       questionId: { type: mongoose.Schema.Types.ObjectId, ref: "Question" },
       choiceIndex: Number,
-      answer: String,
+      answer : String,
 
     },
   ],
