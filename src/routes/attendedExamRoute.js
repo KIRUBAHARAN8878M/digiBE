@@ -31,11 +31,15 @@ Path.post("/add-attend-exam", authenticate, async (req, res) => {
     if (!exam) {
       return res.status(404).send({ message: "Exam not found" });
     }
+    const questionIds = exam.questions.map((question) => question._id.toString());
 
-    const questionIds = exam.questions.map((question) => question._id);
-    const submittedAnswers = answers.filter((answer) =>
-      questionIds.includes(answer.questionId)
-    );
+    const submittedAnswers = answers.filter((answer) => {
+      // console.log("answer:", answer);
+      // console.log("questionIds:", questionIds);
+      // console.log("includes:", questionIds.includes(answer.questionId));
+      return questionIds.includes(answer.questionId);
+    });
+   
 
     const attendedExam = new AttendedExam({
       user: userId,
@@ -46,6 +50,9 @@ Path.post("/add-attend-exam", authenticate, async (req, res) => {
     await attendedExam.save();
 
     res.send({ message: "Exam attended successfully", attendedExam });
+//     console.log("questionIds:", questionIds);
+// console.log("answers:", answers);
+// console.log("submittedAnswers:", submittedAnswers);
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
